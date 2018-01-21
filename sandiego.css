@@ -1,0 +1,58 @@
+h1 {
+	text-align: center;
+	padding: 10px 0;
+	background: #4286f4;
+	color: white;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+body {
+    margin: 0;
+	font-family: 'Risque';
+}
+
+button {
+	font-family: 'Risque';
+	border: none;
+	background: none;
+}
+
+
+table {
+	text-align: center;
+}
+
+tbody {
+	border: 1px solid black
+}
+
+
+.list-group-item {
+    padding: 3px 10px;
+}
+
+.pistaEscondida {
+    visibility: hidden;
+}
+
+#mapa-container {
+	background: #66a7aa;
+}
+
+#tablas-container {
+	background: #3c4656;
+}
+
+#juegoGanadoModal {
+	color: #0ba500;
+}
+
+#juegoPerdidoModal {
+	color: #a50000;
+}
+
+#sinTiempoModal {
+	color: #a50000;
+}
+

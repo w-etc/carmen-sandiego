@@ -1,7 +1,291 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+	<title>Carmen Sandiego</title>
+	<link rel="stylesheet" type="text/css" href="cssmap-south-america/cssmap-south-america.css" media="screen">
+  <link href="https://fonts.googleapis.com/css?family=Risque" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="sandiego.css">
+</head>
+<body onload="initialize()">
+
+  <nav class="navbar .navbar-toggler sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Carmen Sandiego</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <span class="navbar-text mx-auto" id="textoPais" style="width: 200px;">
+      Estás en <span id="paisEnPantalla"></span>.
+    </span>
+    <button id="interrogacion" type="button" class="btn btn-light mx-auto" style="width: 200px;">Interrogar un testigo</button>
+    <span class="navbar-text mx-auto" id="textoTiempo" style="width: 200px;">
+      Tiempo restante: <span id="tiempoEnPantalla"></span> horas.
+    </span>
+    <ul class="nav navbar-nav navbar-right">
+      <button type="button" class="btn btn-primary botonModal" data-toggle="modal" data-target="#exampleModal">
+      Reglas
+      </button>
+      <button type="button" id="jugarOtraVezBoton" class="btn btn-primary" data-toggle="modal">
+      Jugar Otra Vez
+      </button>
+    </ul>
+    
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-sm-12" id="mapa-container">
+      <div id="map-south-america">
+        <ul class="south-america">
+          <li class="sam1"><a id="sam1" href="#argentina" rel="nofollow">Argentina</a></li>
+          <li class="sam2"><a id="sam2" href="#bolivia" rel="nofollow">Bolivia</a></li>
+          <li class="sam3"><a id="sam3" href="#brazil" rel="nofollow">Brasil</a></li>
+          <li class="sam4"><a id="sam4" href="#chile" rel="nofollow">Chile</a></li>
+          <li class="sam5"><a id="sam5" href="#colombia" rel="nofollow">Colombia</a></li>
+          <li class="sam6"><a id="sam6" href="#ecuador" rel="nofollow">Ecuador</a></li>
+          <li class="sam7"><a id="sam7" href="#guyana" rel="nofollow">Guyana</a></li>
+          <li class="sam8"><a id="sam8" href="#french-guiana" rel="nofollow">Guayana Francesa</a></li>
+          <li class="sam9"><a id="sam9" href="#paraguay" rel="nofollow">Paraguay</a></li>
+          <li class="sam10"><a id="sam10" href="#peru" rel="nofollow">Peru</a></li>
+          <li class="sam11"><a id="sam11" href="#suriname" rel="nofollow">Surinam</a></li>
+          <li class="sam12"><a id="sam12" href="#uruguay" rel="nofollow">Uruguay</a></li>
+          <li class="sam13"><a id="sam13" href="#venezuela" rel="nofollow">Venezuela</a></li>
+          <li class="sam14"><a id="sam14" href="#falkland-islands" rel="nofollow">Islas Malvinas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12" id="tablas-container">
+      <table class="table table-bordered table-responsive-lg table-sm table-light" style="overflow-x:auto;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Sospechoso 1</th>
+                <th>Sospechoso 2</th>
+                <th>Sospechoso 3</th>
+                <th>Sospechoso 4</th>
+                <th>Sospechoso 5</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="alturas">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="sexos">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="contexturas">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="coloresDeOjos">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="coloresDeCabello">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="formasDeCabello">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="coloresDeTez">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="arrestos">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+        </tbody>
+      </table>
+      <ul class="list-group">
+        <li class="list-group-item"><center><strong>Pistas</strong></center></li>
+          <span id="pistasEnPantalla">
+            <li class="list-group-item pistaEscondida"></li>
+            <li class="list-group-item pistaEscondida"></li>
+            <li class="list-group-item pistaEscondida"></li>
+            <li class="list-group-item pistaEscondida"></li>
+            <li class="list-group-item pistaEscondida"></li>
+            <li class="list-group-item pistaEscondida"></li>
+            <li class="list-group-item pistaEscondida"></li>
+          </span>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reglas</h5>
+        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>El zircón cúbico más grande del mundo fue robado de la Universidad Nacional de Quilmes. Casualmente, cinco estudiantes se fueron de vacaciones el mismo día que desapareció el zircón. Tu trabajo es viajar por Sudamérica y encontrar testigos que hayan visto a alguien veraneando con la joya.</p>
+        <p>Las reglas son las siguientes: </p>
+        <ul>
+          <li>Ninguno de los sospechosos quiere decir en qué países estuvo. Tendrás que usar tu instinto.</li>
+          <li>Solo se puede interrogar a un testigo por pais.</li>
+          <li>Los testigos solo te darán información si el culpable pasó por su pais.</li>
+          <li>Interrogar a un testigo te lleva 2 horas de tu tiempo. Viajar de país en país te lleva 10 horas. Si te quedás sin tiempo le perderás el rastro al culpable.</li>
+          <li>En cualquier momento de la partida podés intentar adivinar cuál de tus sospechosos es el culpable, pero si fallás vas a perder tu trabajo.</li>
+        </ul>
+        <p>Pistas:</p>
+        <ul>
+          <li>Siempre habrá un testigo en Argentina que te pueda dar una pista.</li>
+          <li>Las Islas Malvinas son visitables.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="noTestigoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El Testigo no vio a nadie con un zircón.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="testigoUsadoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Ya interrogaste a un testigo en este país.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="juegoGanadoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El sospechoso confesó. Ganaste!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="juegoPerdidoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Arrestaste al sospechoso equivocado. Te quedaste sin trabajo.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="sinTiempoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Te quedaste sin tiempo.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$("#map-south-america").CSSMap({
+  "size": 430,
+  "mapStyle": "dark",
+  "tooltips": "sticky",
+  "responsive": "auto",
+  "tapOnce": true,
+  "authorInfo": true
+});
+});
+</script>
+<script type="text/javascript" src="sandiego.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
