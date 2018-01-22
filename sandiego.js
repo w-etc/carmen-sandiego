@@ -187,12 +187,16 @@ function initialize() {
 				detective.viajarA(paises[x]);
 				paises[x].tag.style.visibility = "hidden";	
 			});
+			paises[x].tag.addEventListener("touchstart", function() {			
+				detective.viajarA(paises[x]);
+				paises[x].tag.style.visibility = "hidden";	
+			});
 		})(i)
 	};
-	$("#interrogacion").click(function() {
+	$("#interrogacion").bind('touchstart click', function() {
 		detective.interrogarTestigo();
 	});
-	$("#jugarOtraVezBoton").click(function() {
+	$("#jugarOtraVezBoton").bind('touchstart click', function() {
 		reiniciarJuego();
 	});
 	mostrarSospechosos();
@@ -233,7 +237,7 @@ function mostrarSospechosos() {
 		$(this).html("<button type=\"button\" class=\"btn btn-danger\" id=\"sospechosoNumero"+(index+1)+"\">Arrestar</a>");
 	})
 	$("#arrestos td button").each(function(index) {
-		$(this).click(function() {
+		$(this).bind('touchstart click', function() {
 			detective.arrestarSospechosoNumero(index);
 		});
 	});
