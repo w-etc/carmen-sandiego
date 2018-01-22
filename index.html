@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
 	<title>Carmen Sandiego</title>
 	<link rel="stylesheet" type="text/css" href="cssmap-south-america/cssmap-south-america.css" media="screen">
-  <link href="https://fonts.googleapis.com/css?family=Risque" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400" rel="stylesheet"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="sandiego.css">
 </head>
@@ -15,22 +16,14 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <span class="navbar-text mx-auto" id="textoPais" style="width: 200px;">
-      Estás en <span id="paisEnPantalla"></span>.
-    </span>
-    <button id="interrogacion" type="button" class="btn btn-light mx-auto" style="width: 200px;">Interrogar un testigo</button>
-    <span class="navbar-text mx-auto" id="textoTiempo" style="width: 200px;">
-      Tiempo restante: <span id="tiempoEnPantalla"></span> horas.
-    </span>
-    <ul class="nav navbar-nav navbar-right">
-      <button type="button" class="btn btn-primary botonModal" data-toggle="modal" data-target="#exampleModal">
-      Reglas
-      </button>
-      <button type="button" id="jugarOtraVezBoton" class="btn btn-primary" data-toggle="modal">
-      Jugar Otra Vez
-      </button>
+    <ul class="nav navbar-nav ml-auto">
+        <button type="button" class="btn btn-dark botonModal" data-toggle="modal" data-target="#exampleModal">
+        Reglas
+        </button>
+        <button type="button" id="jugarOtraVezBoton" class="btn btn-dark" data-toggle="modal">
+        Jugar Otra Vez
+        </button>
     </ul>
     
   </div>
@@ -59,6 +52,11 @@
       </div>
     </div>
     <div class="col-md-6 col-sm-12" id="tablas-container">
+      <center><button id="interrogacion" type="button" class="btn btn-light mx-auto" style="width: 200px;">Interrogar un testigo</button></center>
+      <div class="d-flex justify-content-center p-2">
+      <span id="textoPais" style="width: 200px;">Estás en <span id="paisEnPantalla"></span>.</span>
+      <span id="textoTiempo" style="width: 200px;"> Tiempo restante: <span id="tiempoEnPantalla"></span> horas.</span>
+      </div>
       <table class="table table-bordered table-responsive-lg table-sm table-light" style="overflow-x:auto;">
         <thead class="thead-dark">
             <tr>

@@ -9,15 +9,15 @@ h1 {
 
 body {
     margin: 0;
-	font-family: 'Risque';
+	font-family: 'Raleway';
+	font-size: 15px;
 }
 
 button {
-	font-family: 'Risque';
+	font-family: 'Raleway';
 	border: none;
 	background: none;
 }
-
 
 table {
 	text-align: center;
@@ -37,7 +37,7 @@ tbody {
 }
 
 #mapa-container {
-	background: #66a7aa;
+	background: #2253a3;
 }
 
 #tablas-container {
@@ -56,3 +56,15 @@ tbody {
 	color: #a50000;
 }
 
+.d-flex {
+	background: white;
+	margin: 1% 0;
+}
+
+#interrogacion {
+	margin-top: 1%;
+}
+
+.navbar-dark .navbar-brand {
+    color: #fff;
+}
