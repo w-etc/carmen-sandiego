@@ -193,7 +193,7 @@ function initialize() {
 			});
 		})(i)
 	};
-	$("#interrogacion").bind('touchstart click', function() {
+	$("#interrogacion").bind('click', function() {
 		detective.interrogarTestigo();
 	});
 	$("#jugarOtraVezBoton").bind('touchstart click', function() {
