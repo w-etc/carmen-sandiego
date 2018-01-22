@@ -81,7 +81,7 @@ function Juego(tiempoRestante, detective, culpable) {
 function Detective(localizacion) {
 	this.pistas = [];
 	this.localizacionActual = localizacion
-	this.tiempoRestante = 72;
+	this.tiempoRestante = 84;
 	this.viajarA = function(localizacion) {
 		this.tiempoRestante = this.tiempoRestante - 10;
 		$("#tiempoEnPantalla").text(this.tiempoRestante);
@@ -171,7 +171,7 @@ function initialize() {
 
 	culpable.estuvoEnSietePaisesAlAzar();
 	document.querySelector("ul .sam1").classList.toggle("active-region");
-	$("#tiempoEnPantalla").text("72");
+	$("#tiempoEnPantalla").text("84");
 	$("#paisEnPantalla").text(detective.localizacionActual.nombre);
 	for (var i=0; i < paises.length; i++) {
 		paises[i].tag = document.querySelectorAll(".m")[i];
@@ -270,8 +270,8 @@ function reiniciarJuego() {
 	culpable = new Culpable(sospechosos[Math.floor(Math.random() * sospechosos.length)]);
 	culpable.estuvoEnSietePaisesAlAzar();
 	detective.localizacionActual = argentina;
-	detective.tiempoRestante = 72;
-	$("#tiempoEnPantalla").text("72");
+	detective.tiempoRestante = 84;
+	$("#tiempoEnPantalla").text("84");
 	$("#paisEnPantalla").text(detective.localizacionActual.nombre);
 	$("ul.south-america li").removeClass("active-region");
 	document.querySelector("ul .sam1").classList.add("active-region");
