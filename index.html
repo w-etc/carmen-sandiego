@@ -9,16 +9,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="sandiego.css">
 </head>
-<body onload="initialize()">
+<body onload="iniciarJuego()">
 
   <nav class="navbar .navbar-toggler sticky-top navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Carmen Sandiego</a>
-  <button class="navbar-toggler botonModal" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler boton-permanente" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="nav navbar-nav ml-auto">
-        <button type="button" class="btn btn-dark botonModal" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-dark boton-permanente" data-toggle="modal" data-target="#reglas">
         Reglas
         </button>
         <button type="button" id="jugarOtraVezBoton" class="btn btn-dark" data-toggle="modal">
@@ -52,103 +52,103 @@
       </div>
     </div>
     <div class="col-md-6 col-sm-12" id="tablas-container">
-      <center><button id="interrogacion" type="button" class="btn btn-light mx-auto" style="width: 200px;">Interrogar un testigo</button></center>
-      <div class="d-flex justify-content-center p-2">
-      <span id="textoPais" style="width: 200px;">Estás en <span id="paisEnPantalla"></span>.</span>
-      <span id="textoTiempo" style="width: 200px;"> Tiempo restante: <span id="tiempoEnPantalla"></span> horas.</span>
-      </div>
-      <table class="table table-bordered table-responsive-lg table-sm table-light" style="overflow-x:auto;">
-        <thead class="thead-dark">
-            <tr>
-                <th>Sospechoso 1</th>
-                <th>Sospechoso 2</th>
-                <th>Sospechoso 3</th>
-                <th>Sospechoso 4</th>
-                <th>Sospechoso 5</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr id="alturas">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="sexos">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="contexturas">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="coloresDeOjos">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="coloresDeCabello">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="formasDeCabello">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="coloresDeTez">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr id="arrestos">
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-        </tbody>
-      </table>
-      <ul class="list-group">
-        <li class="list-group-item"><center><strong>Pistas</strong></center></li>
-          <span id="pistasEnPantalla">
-            <li class="list-group-item pistaEscondida"></li>
-            <li class="list-group-item pistaEscondida"></li>
-            <li class="list-group-item pistaEscondida"></li>
-            <li class="list-group-item pistaEscondida"></li>
-            <li class="list-group-item pistaEscondida"></li>
-            <li class="list-group-item pistaEscondida"></li>
-            <li class="list-group-item pistaEscondida"></li>
-          </span>
-      </ul>
-    </div>
-  </div>
+    	<center><button id="interrogacion" type="button" class="btn btn-light mx-auto" style="width: 200px;">Interrogar un testigo</button></center>
+    	<div class="d-flex justify-content-center p-2">
+    		<span id="textoPais" style="width: 200px;">Estás en <span id="paisEnPantalla"></span>.</span>
+    		<span id="textoTiempo" style="width: 200px;"> Tiempo restante: <span id="tiempoEnPantalla"></span> horas.</span>
+    	</div>
+      	<table class="table table-bordered table-responsive-lg table-sm table-light" style="overflow-x:auto;">
+	        <thead class="thead-dark">
+	            <tr>
+	                <th>Sospechoso 1</th>
+	                <th>Sospechoso 2</th>
+	                <th>Sospechoso 3</th>
+	                <th>Sospechoso 4</th>
+	                <th>Sospechoso 5</th>
+	            </tr>
+	        </thead>
+	        	<tbody>
+		            <tr id="alturas">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="sexos">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="contexturas">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="coloresDeOjos">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="coloresDeCabello">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="formasDeCabello">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="coloresDeTez">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+		            <tr id="arrestos">
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		              <td></td>
+		            </tr>
+	        	</tbody>
+      		</table>
+		    <ul class="list-group">
+		        <li class="list-group-item"><center><strong>Pistas</strong></center></li>
+		        <span id="pistasEnPantalla">
+			        <li class="list-group-item pista-escondida"></li>
+			        <li class="list-group-item pista-escondida"></li>
+			        <li class="list-group-item pista-escondida"></li>
+			        <li class="list-group-item pista-escondida"></li>
+			        <li class="list-group-item pista-escondida"></li>
+			        <li class="list-group-item pista-escondida"></li>
+			        <li class="list-group-item pista-escondida"></li>
+		        </span>
+		    </ul>
+    	</div>
+  	</div>
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="reglas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Reglas</h5>
-        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">Reglas</h5>
+        <button type="button" class="close boton-permanente" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -169,15 +169,13 @@
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary boton-permanente" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-
-
-<div class="modal fade" id="noTestigoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="no-testigo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -189,17 +187,17 @@
         El Testigo no vio a nadie con un zircón.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary boton-permanente" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="testigoUsadoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="testigo-interrogado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close boton-permanente" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -207,17 +205,17 @@
         Ya interrogaste a un testigo en este país.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary boton-permanente" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="juegoGanadoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="juego-ganado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close boton-permanente" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -225,17 +223,17 @@
         El sospechoso confesó. Ganaste!
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary boton-permanente" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="juegoPerdidoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="juego-perdido" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close boton-permanente" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -243,17 +241,17 @@
         Arrestaste al sospechoso equivocado. Te quedaste sin trabajo.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary boton-permanente" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="sinTiempoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="sin-tiempo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close botonModal" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close boton-permanente" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -261,7 +259,7 @@
         Te quedaste sin tiempo.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary botonModal" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary boton-permanente" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -269,7 +267,7 @@
 
 
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){

@@ -6,12 +6,12 @@ var contexturas = ["Cuerpo Delgado", "Cuerpo relleno", "Cuerpo grande"];
 var formasDeCabello = ["Cabello ondulado", "Cabello lacio", "Cabello enrulado"];
 var sexos = ["Sexo masculino", "Sexo femenino"];
 
-var sospechoso1 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
-var sospechoso2 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
-var sospechoso3 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
-var sospechoso4 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
-var sospechoso5 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
-var sospechosos = [sospechoso1, sospechoso2, sospechoso3, sospechoso4, sospechoso5];
+var sospechoso1;
+var sospechoso2;
+var sospechoso3;
+var sospechoso4;
+var sospechoso5;
+var sospechosos;
 
 var argentina = new Pais("Argentina");
 var uruguay = new Pais("Uruguay");
@@ -29,8 +29,8 @@ var surinam = new Pais("Surinam");
 var islasMalvinas = new Pais("Islas Malvinas");
 var paises = [argentina, bolivia, brasil, chile, colombia, ecuador, guyana, guayanaFrancesa, paraguay, peru, surinam, uruguay, venezuela, islasMalvinas];
 
-var detective = new Detective(argentina);
-var culpable = new Culpable(sospechosos[Math.floor(Math.random() * sospechosos.length)]);
+var detective = new Detective();
+var culpable;
 
 
 function Sospechoso(altura, colorDeCabello, colorDeTez, contextura, formaDeCabello, colorDeOjos, sexo) {
@@ -54,7 +54,7 @@ function Culpable(unSospechoso) {
 	this.sexo = unSospechoso.sexo;
 	this.descripcion = [this.altura, this.colorDeCabello, this.colorDeTez, this.contextura, this.formaDeCabello, this.colorDeOjos, this.sexo];
 	this.paisesVisitados;
-	this.estuvoEnSietePaisesAlAzar = function() {
+	this.viajarASietePaisesAlAzar = function() {
 		this.paisesVisitados = [];
 		this.paisesVisitados.push(argentina);
 		argentina.elCulpablePasoPorAca();
@@ -71,16 +71,9 @@ function Culpable(unSospechoso) {
 	}
 }
 
-function Juego(tiempoRestante, detective, culpable) {
-	this.tiempoRestante = tiempoRestante;
-	this.detective = detective;
-	this.culpable = culpable;
-
-}
-
-function Detective(localizacion) {
+function Detective() {
 	this.pistas = [];
-	this.localizacionActual = localizacion
+	this.localizacionActual = argentina;
 	this.tiempoRestante = 84;
 	this.viajarA = function(localizacion) {
 		this.tiempoRestante = this.tiempoRestante - 10;
@@ -112,18 +105,17 @@ function Detective(localizacion) {
 		if (culpable.descripcion.every(function (x) {
 			return sospechosos[index].descripcion.includes(x)
 		})) {
-			juegoTerminado();
-			$("#juegoGanadoModal").modal("show");
+			terminarJuego();
+			$("#juego-ganado").modal("show");
 		}else {
-			juegoTerminado();
-			$("#juegoPerdidoModal").modal("show");
+			terminarJuego();
+			$("#juego-perdido").modal("show");
 		}
 	}
 	this.limpiarAgenda = function() {
 		this.pistas = [];
 	}
 }
-
 
 function TestigoQueVioAlCulpable() {
 	this.puedeSerInterrogado = true;
@@ -133,11 +125,10 @@ function TestigoQueVioAlCulpable() {
 			detective.anotarPistaSobre(culpable);
 			this.puedeSerInterrogado = false;
 		} else {
-			$("#testigoUsadoModal").modal("show");
+			$("#testigo-interrogado").modal("show");
 		}
 	}
 }
-
 
 function TestigoQueNoVioAlCulpable() {
 	this.puedeSerInterrogado = true;
@@ -145,15 +136,12 @@ function TestigoQueNoVioAlCulpable() {
 		if (this.puedeSerInterrogado) {
 			detective.tiempoRestante = detective.tiempoRestante - 2;
 			this.puedeSerInterrogado = false;
-			$('#noTestigoModal').modal('show')
+			$('#no-testigo').modal('show')
 		} else {
-			$("#testigoUsadoModal").modal("show");
+			$("#testigo-interrogado").modal("show");
 		}
 	}
 }
-
-
-
 
 function Pais(nombre) {
 	this.nombre = nombre;
@@ -167,75 +155,83 @@ function Pais(nombre) {
 	}
 }
 
-function initialize() {
 
-	culpable.estuvoEnSietePaisesAlAzar();
-	document.querySelector("ul .sam1").classList.toggle("active-region");
-	$("#tiempoEnPantalla").text("84");
-	$("#paisEnPantalla").text(detective.localizacionActual.nombre);
-	for (var i=0; i < paises.length; i++) {
-		paises[i].tag = document.querySelectorAll(".m")[i];
-	};
-	for (var i=0; i < paises.length; i++) {
-		paises[i].tag.style.visibility = "visible";;
-	};
-	argentina.tag.style.visibility = "hidden";
-	for(var i = 0; i < paises.length; i++){
-		//IIFE
-		(function(x) {
-			paises[x].tag.addEventListener("click", function() {			
-				detective.viajarA(paises[x]);
-				paises[x].tag.style.visibility = "hidden";	
-			});
-			paises[x].tag.addEventListener("touchstart", function() {			
-				detective.viajarA(paises[x]);
-				paises[x].tag.style.visibility = "hidden";	
-			});
-		})(i)
-	};
-	$("#interrogacion").bind('click', function() {
-		detective.interrogarTestigo();
-	});
-	$("#jugarOtraVezBoton").bind('touchstart click', function() {
-		reiniciarJuego();
-	});
+function iniciarJuego() {
+	generarSospechososYCulpable();
+	culpable.viajarASietePaisesAlAzar();
+	prepararMapaYFlex();
+	agregarListeners();
 	mostrarSospechosos();
 }
 
-function generarSospechosos() {
+function terminarJuego() {
+	$("button").each(function() {
+		$(this).prop('disabled', true);
+	});
+	$(".boton-permanente").each(function() {
+		$(this).prop("disabled", false);
+	});
+	$("#jugarOtraVezBoton").prop("disabled", false);
+	for (var i=0; i < paises.length; i++) {
+		paises[i].tag.style.visibility = "hidden";;
+	};
+}
+
+function reiniciarJuego() {
+	for (var i=0; i < paises.length; i++) {
+		paises[i].renovarTestigo();
+	}
+	generarSospechososYCulpable();
+	culpable.viajarASietePaisesAlAzar();
+	detective.localizacionActual = argentina;
+	detective.tiempoRestante = 84;
+	prepararMapaYFlex();
+	mostrarSospechosos();
+	detective.limpiarAgenda();
+	$("#pistasEnPantalla li").each(function(index) {
+		$(this).addClass("pista-escondida");
+		$(this).text("")
+	});
+	$("button").each(function() {
+		$(this).prop('disabled', false);
+	});
+}
+
+function generarSospechososYCulpable() {
 	sospechoso1 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
 	sospechoso2 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
 	sospechoso3 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
 	sospechoso4 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
 	sospechoso5 = new Sospechoso(alturas[Math.floor(Math.random() * alturas.length)], coloresDeCabello[Math.floor(Math.random() * coloresDeCabello.length)], coloresDeTez[Math.floor(Math.random() * coloresDeTez.length)], contexturas[Math.floor(Math.random() * contexturas.length)], formasDeCabello[Math.floor(Math.random() * formasDeCabello.length)], coloresDeOjos[Math.floor(Math.random() * coloresDeOjos.length)], sexos[Math.floor(Math.random() * sexos.length)]);
 	sospechosos = [sospechoso1, sospechoso2, sospechoso3, sospechoso4, sospechoso5];
+	culpable = new Culpable(sospechosos[Math.floor(Math.random() * sospechosos.length)]);
 }
 
 function mostrarSospechosos() {
 	$("#alturas td").each(function(index) {
 		$(this).text(sospechosos[index].altura);
-	})
+	});
 	$("#sexos td").each(function(index) {
 		$(this).text(sospechosos[index].sexo);
-	})
+	});
 	$("#contexturas td").each(function(index) {
 		$(this).text(sospechosos[index].contextura);
-	})
+	});
 	$("#coloresDeOjos td").each(function(index) {
 		$(this).text(sospechosos[index].colorDeOjos);
-	})
+	});
 	$("#coloresDeCabello td").each(function(index) {
 		$(this).text(sospechosos[index].colorDeCabello);
-	})
+	});
 	$("#formasDeCabello td").each(function(index) {
 		$(this).text(sospechosos[index].formaDeCabello);
-	})
+	});
 	$("#coloresDeTez td").each(function(index) {
 		$(this).text(sospechosos[index].colorDeTez);
-	})
+	});
 	$("#arrestos td").each(function(index) {
 		$(this).html("<button type=\"button\" class=\"btn btn-danger\" id=\"sospechosoNumero"+(index+1)+"\">Arrestar</a>");
-	})
+	});
 	$("#arrestos td button").each(function(index) {
 		$(this).bind('touchstart click', function() {
 			detective.arrestarSospechosoNumero(index);
@@ -249,7 +245,7 @@ function mostrarPistas() {
 	});
 	$("#pistasEnPantalla li").each(function(index) {
 		if (!($(this).text() == "")) {
-			$(this).removeClass("pistaEscondida");
+			$(this).removeClass("pista-escondida");
 		}
 	});
 }
@@ -257,49 +253,43 @@ function mostrarPistas() {
 
 function chequearTiempo() {
 	if (detective.tiempoRestante <=0) {
-		juegoTerminado();
-		$("#sinTiempoModal").modal("show");
+		terminarJuego();
+		$("#sin-tiempo").modal("show");
 	}
 }
 
-function reiniciarJuego() {
-	for (var i=0; i < paises.length; i++) {
-		paises[i].renovarTestigo();
-	}
-	generarSospechosos();
-	culpable = new Culpable(sospechosos[Math.floor(Math.random() * sospechosos.length)]);
-	culpable.estuvoEnSietePaisesAlAzar();
-	detective.localizacionActual = argentina;
-	detective.tiempoRestante = 84;
-	$("#tiempoEnPantalla").text("84");
+function agregarListeners() {
+	for(var i = 0; i < paises.length; i++){
+		(function(x) {
+			paises[x].tag.addEventListener("click", function() {			
+				detective.viajarA(paises[x]);
+				paises[x].tag.style.visibility = "hidden";	
+			});
+			paises[x].tag.addEventListener("touchstart", function() {			
+				detective.viajarA(paises[x]);
+				paises[x].tag.style.visibility = "hidden";	
+			});
+		})(i)
+	};
+	$("#interrogacion").on('click', function() {
+		detective.interrogarTestigo();
+	});
+	$("#jugarOtraVezBoton").on('touchstart click', function() {
+		reiniciarJuego();
+	});
+
+}
+
+function prepararMapaYFlex() {
+	$("#tiempoEnPantalla").text(detective.tiempoRestante);
 	$("#paisEnPantalla").text(detective.localizacionActual.nombre);
 	$("ul.south-america li").removeClass("active-region");
 	document.querySelector("ul .sam1").classList.add("active-region");
 	for (var i=0; i < paises.length; i++) {
+		paises[i].tag = document.querySelectorAll(".m")[i];
+	};
+	for (var i=0; i < paises.length; i++) {
 		paises[i].tag.style.visibility = "visible";;
 	};
 	argentina.tag.style.visibility = "hidden";
-	mostrarSospechosos();
-	detective.limpiarAgenda();
-	$("#pistasEnPantalla li").each(function(index) {
-		$(this).addClass("pistaEscondida");
-		$(this).text("")
-	});
-	$("button").each(function() {
-		$(this).prop('disabled', false);
-	});
-}
-
-
-function juegoTerminado() {
-	$("button").each(function() {
-		$(this).prop('disabled', true);
-	});
-	$(".botonModal").each(function() {
-		$(this).prop("disabled", false);
-	});
-	$("#jugarOtraVezBoton").prop("disabled", false);
-	for (var i=0; i < paises.length; i++) {
-		paises[i].tag.style.visibility = "hidden";;
-	};
 }

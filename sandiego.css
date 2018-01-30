@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+	font-family: 'Raleway';
+	font-size: 15px;
+}
+
 h1 {
 	text-align: center;
 	padding: 10px 0;
@@ -5,18 +11,6 @@ h1 {
 	color: white;
 	margin: 0;
 	text-transform: uppercase;
-}
-
-body {
-    margin: 0;
-	font-family: 'Raleway';
-	font-size: 15px;
-}
-
-button {
-	font-family: 'Raleway';
-	border: none;
-	background: none;
 }
 
 table {
@@ -27,12 +21,22 @@ tbody {
 	border: 1px solid black
 }
 
+button {
+	font-family: 'Raleway';
+	border: none;
+	background: none;
+}
+
+.d-flex {
+	background: white;
+	margin: 5px 0;
+}
 
 .list-group-item {
     padding: 3px 10px;
 }
 
-.pistaEscondida {
+.pista-escondida {
     visibility: hidden;
 }
 
@@ -44,23 +48,18 @@ tbody {
 	background: #3c4656;
 }
 
-#juegoGanadoModal {
+#interrogacion {
+	margin-top: 5px;
+}
+
+#juego-ganado {
 	color: #0ba500;
 }
 
-#juegoPerdidoModal {
+#juego-perdido {
 	color: #a50000;
 }
 
-#sinTiempoModal {
+#sin-tiempo {
 	color: #a50000;
-}
-
-.d-flex {
-	background: white;
-	margin: 1% 0;
-}
-
-#interrogacion {
-	margin-top: 1%;
 }
